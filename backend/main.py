@@ -1,3 +1,8 @@
+###############################
+#   arXiv quark extractor
+#   Annika Stein, 2022
+###############################
+
 import urllib.request as libreq
 
 import requests
@@ -9,13 +14,25 @@ import os
 import re
 import sys
 
-"""
-with libreq.urlopen('http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=1') as url:
-    r = url.read()
-    print(r)
-"""
+import numpy as np
+import pickle
+
+import datetime
+
+        
+year = str(datetime.datetime.today().isocalendar()[0])
+week = str(datetime.datetime.today().isocalendar()[1])
+print('Running script for year', year, 'and week', week)
+
+def write_list(the_list):
+    # store list in binary file so 'wb' mode
+    with open(f'/eos/user/a/anstein/www/Trending_QuarX/Y{year}W{week}', 'wb') as f:
+        pickle.dump(the_list, f)
+        print('Wrote results into binary file')
 
 category = 'hep-ex'
+print('For category', category)
+#sys.exit()
 
 quarks = ['u','d','c','s','t','b']
 
@@ -72,7 +89,6 @@ with libreq.urlopen('https://arxiv.org/list/{}/pastweek?show='.format(category)+
     
     lines = r.splitlines(True)
     
-    # ToDo
     for line in lines:
         decoded_line = line.decode('UTF-8')
         
@@ -174,26 +190,10 @@ print('-'*50)
 print('Also tried to extract information from {} bad files.'.format(len(bad_files)))    
 print()
 print('='*50)     
-"""
-            #print(line.decode('UTF-8'))
-            if 'abs' in decoded_line:
-                print(decoded_line)
 
-        for line in r:
-            decoded = line
-            print(decoded)
-
-        for line in file:
-            decoded = line.decode('UTF-8')
-            print(decoded)
-
-        with open('thatThing.html', 'a') as f:
-            f.write(r.decode('UTF-8'))
-"""
-    
-    
-    
-    
+write_list([quarks, freq_in_pub, freq_all_appearances])
+np.savetxt(f'/eos/user/a/anstein/www/Trending_QuarX/Y{year}W{week}.csv', [p for p in zip(quarks, freq_in_pub, freq_all_appearances)], delimiter=',', fmt='%s')
+print('Wrote results into csv file. Exiting.')    
     
 """
     With the help of:
