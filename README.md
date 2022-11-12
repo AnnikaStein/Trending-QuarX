@@ -1,3 +1,5 @@
+[![pages-build-deployment](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/pages/pages-build-deployment)
+
 # Trending QuarX
 
 Mirror, mirror on the wall, who is the quarkiest one of all? Find this week's most popular quarks by scraping preprints of a given category. Addressing the world's most pressing questions in a very serious way. /s
