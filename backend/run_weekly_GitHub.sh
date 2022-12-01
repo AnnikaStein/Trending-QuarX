@@ -1,3 +1,3 @@
-python3 main.py
-python3 merge.py
+python3 main_GitHub.py
+python3 merge_GitHub.py
 python3 plot_GitHub.py
