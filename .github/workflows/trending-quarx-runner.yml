@@ -3,7 +3,7 @@ name: Trending-QuarX-Runner
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Want to have this in the end: '30 6 * * SAT' # runs at 6:30 every saturday
+    - cron: '*/5 * * * *' # '30 6 * * SAT' # runs at 6:30 every saturday
 
 jobs:
   build:
@@ -33,10 +33,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
+          pwd
+          #git add frontend/Quark.png
+          #git add backend/full.csv
           git commit -m "update data" -a
 
       - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
