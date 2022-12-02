@@ -16,11 +16,11 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.6.8' # install the python version needed
+          python-version: '3.7' # install the python version needed
           
       - name: install python packages
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade --no-cache-dir pip
           pip install -r requirements.txt
 
       - name: execute shell script # run weekly tasks
