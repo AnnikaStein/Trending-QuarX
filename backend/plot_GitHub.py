@@ -61,7 +61,8 @@ with open(input_path) as csv_file:
         b_all.append(int(row[12]))
 n_weeks = len(labels)
 x_ax = np.arange(n_weeks)
-
+if len(labels) > 7:
+    x_ax = x_ax[-7:]
 freqs = np.array([u_freq,
                  d_freq,
                  c_freq,
@@ -84,13 +85,17 @@ legtitle = 'Quark'
 legloc = 'upper left'
 handles = []
 for i in range(6):
-    y1 = freqs[i]
-    y2 = all_a[i]
+    if len(labels) > 7:
+        y1 = freqs[i][-7:]
+        y2 = all_a[i][-7:]
+    else:
+        y1 = freqs[i]
+        y2 = all_a[i]
     legend_text = names[i]
     print(x_ax, y1)
     print(x_ax, y2)
-    ax1.plot(x_ax, y1, '-bo', color=colors[i], linewidth=3.0, label=legend_text+' (in papers)')
-    ax2.plot(x_ax, y2, '--bo', color=colors[i], linewidth=3.0, label=legend_text+' (all mentions)')
+    ax1.plot(x_ax, y1, '-o', color=colors[i], linewidth=3.0, label=legend_text+' (in papers)')
+    ax2.plot(x_ax, y2, '--o', color=colors[i], linewidth=3.0, label=legend_text+' (all mentions)')
     
 
     handles.append(mpatches.Patch(color=colors[i], label=names[i]))
@@ -109,7 +114,10 @@ ax1.set_ylabel('Appearances (in papers)')
 ax2.set_ylabel('Appearances (all mentions)')
 ax1.set_xlabel('Year & Week')
 ax1.set_xticks(x_ax)
-ax1.set_xticklabels(labels)
+if len(labels) > 7:
+    ax1.set_xticklabels(labels[-7:])
+else:
+    ax1.set_xticklabels(labels)
 fig.savefig('../frontend/'+legtitle + '.png', bbox_inches='tight', dpi=900, transparent=True)
 
 print()
