@@ -61,8 +61,8 @@ with open(input_path) as csv_file:
         b_all.append(int(row[12]))
 n_weeks = len(labels)
 x_ax = np.arange(n_weeks)
-if len(labels) > 7:
-    x_ax = x_ax[-7:]
+if len(labels) > 6:
+    x_ax = x_ax[-6:]
 freqs = np.array([u_freq,
                  d_freq,
                  c_freq,
@@ -85,9 +85,9 @@ legtitle = 'Quark'
 legloc = 'upper left'
 handles = []
 for i in range(6):
-    if len(labels) > 7:
-        y1 = freqs[i][-7:]
-        y2 = all_a[i][-7:]
+    if len(labels) > 6:
+        y1 = freqs[i][-6:]
+        y2 = all_a[i][-6:]
     else:
         y1 = freqs[i]
         y2 = all_a[i]
@@ -114,8 +114,8 @@ ax1.set_ylabel('Appearances (in papers)')
 ax2.set_ylabel('Appearances (all mentions)')
 ax1.set_xlabel('Year & Week')
 ax1.set_xticks(x_ax)
-if len(labels) > 7:
-    ax1.set_xticklabels(labels[-7:])
+if len(labels) > 6:
+    ax1.set_xticklabels(labels[-6:])
 else:
     ax1.set_xticklabels(labels)
 fig.savefig('../frontend/'+legtitle + '.png', bbox_inches='tight', dpi=900, transparent=True)

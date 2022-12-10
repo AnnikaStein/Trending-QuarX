@@ -1,4 +1,5 @@
 [![pages-build-deployment](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/pages/pages-build-deployment)
+[![Trending-QuarX-Runner](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/trending-quarx-runner.yml/badge.svg)](https://github.com/AnnikaStein/Trending-QuarX/actions/workflows/trending-quarx-runner.yml)
 
 # Trending QuarX
 
